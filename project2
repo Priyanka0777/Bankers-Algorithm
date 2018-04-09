@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+pthread_mutex_t first_mutex;
+pthead_mutex_t second_mutex;
+
+int main()
+{
+int i,a,j,k,b;
+
+printf("Enter the number of processes you want to execute");
+scanf("%d",&i);
+printf("Enter the total number of resources");
+scanf("%d",&j);
+int max[i][j];
+int request[i][j];
+int alloc[i][j];
+int need[i][j];
+int x=0;
+printf("\nEnter number of maximum resources of wach type for the processes")
+for(a=0;a<i;a++)
+{
+for(b=0;b<j;b++)
+{
+printf("\nEnter number of instances for resource %d for process %d ",b+1,a+1);
+scanf("%d",&max[a][b]);
+}//innerfor
+}//outerfor1
+printf("\nEnter number of allocated resouces of each type for the process");
+for(a=0;a<i;a++)
+{
+for(b=0;b<j;b++)
+{
+while(x=0){
+
+printf("\nEnter number of instance of resource type %d for process %d",b+1,a+1);
+scanf("%d",&alloc[a][b]);
+if(alloc[a][b]<max[a][b]){
+x=1;
+}//endif
+else{
+printf("\nInvalid entry");
+x=0;
+}//endelse
+}//endwhile
+}//innerfor
+}//outerfor2
+printf("\nEnter need of resources of each type for the process");
+for(a=0;a<i;a++)
+{
+for(b=0;b<j;b++)
+{
+printf("\nEnter need of resource  %d for process %d",b+1,a+1);
+scanf("%d",&need[a][b]);
+}//innerfor3
+}//outerfor3
+printf("\nEnter request of resource of each type for process");
+for(a=0;a<i;a++)
+{
+for(b=0;b<j;b++)
+
+printf("\nEnter request of resource type %d for the process %d",b+1,a+1);
+scanf("%d",&request[a][b]);
+if(request[a][b]>=need[a][b])
+{
+printf("\nRequest made unacceptable");
+}//endif
+else if(request[a][b]>=avail[a][b])
+{
+printf("\nNeed to wait");
+}//endelseif
+else
+{
+avail[a][b]=avail[a][b]-request[a][b];
+alloc[a][b]=alloc[a][b]+request[a][b];
+need[a][b]=need[a][b]-request[a][b];
+}//endelse
+}//innerfor
+}//outerfor4
+//resource_req_algo
+void res_req(
+
+}//mainend
